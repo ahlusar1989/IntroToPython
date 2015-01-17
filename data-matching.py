@@ -21,7 +21,26 @@ def read_file(filename):
 data_set = {}
 data_files =['name-address.psv', 'name-bank-email.psv']
     
-    for filename in data_files:
-        contents = read_file(filename)
-        data_set[filename] = contents
-        print contents
+for filename in data_files:
+    contents = read_file(filename)
+    data_set[filename] = contents
+
+joined_data = {}
+
+for data_set_name in data_set:
+    data_set = data_set[data_set_name]
+    for row in data_set:
+        key = row['name']
+        key = key.strip()
+        key = key.lower()
+        if key not in joined_data:
+            joined_data[key] =row
+        else:
+            data = joined_data[key]
+            data.update(row)
+            
+for row in joined_data.values():
+    row_data = row.values()
+    print "\t".join(len(row_data)
+    
+    
